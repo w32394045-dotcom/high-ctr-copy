@@ -44,22 +44,29 @@
 - 不写"吃了肯定好""无效退款"式夸张承诺（给合规替代版）
 - 不承诺"必然 15% 点击率"（CTR 同时受定向、时段、竞价影响）
 
-## 进阶：Agent 工具安装（Claude Code / Cursor / WorkBuddy 用户）
+## 进阶：Agent 工具安装（任意 skills-compatible runtime）
 
-如果你使用支持 Skill 的 Agent 工具，直接安装原版技能文件：
+如果你使用支持 Skill 的 Agent 工具（Claude Code / Cursor / Codex / WorkBuddy / OpenClaw / Hermes 等），直接安装原版技能文件：
 
 ```bash
-# Claude Code
-cp -r SKILL.md references test-prompts.json ~/.claude/skills/high-ctr-copy/
-
-# WorkBuddy
-cp -r SKILL.md references test-prompts.json ~/.workbuddy/skills/high-ctr-copy/
+# 把 <skills-dir> 换成你的 runtime 用户级 skills 目录
+mkdir -p <skills-dir>/high-ctr-copy
+cp -r SKILL.md references test-prompts.json <skills-dir>/high-ctr-copy/
 ```
+
+| Runtime | 用户级 skills 目录 |
+|---|---|
+| Claude Code | `~/.claude/skills/` |
+| WorkBuddy | `~/.workbuddy/skills/` |
+| 其他 runtime | 见该 runtime 文档；只要目标目录内含 `SKILL.md` 即可被加载 |
+
+项目级：把 `high-ctr-copy/` 放进 `<project>/.<runtime>/skills/`。
 
 技能本体见 [`SKILL.md`](./SKILL.md)，完整知识库在 [`references/`](./references/)（五要素完整定义、分载体规范、正反对照案例）。
 
 ## 来源与版权
 
 - 作者：王志刚（绩效改进专家，《换种教法：高绩效培训师精进之道》）
-- 本技能经 [darwin-skill](https://github.com/alchaincyf/darwin-skill) 自动进化优化（9 维评估 + 独立盲评，进化记录见 [test-prompts.json](./test-prompts.json) 与仓库提交历史）
+- 本技能配有 `test-prompts.json`（6 条测试用例）与 `results.tsv`（改动记录），可供复核。
+- ⚠️ **测试状态**：截至 2026-09-27，本技能**尚未跑过盲测**，无 `test-results.md`，未测得任何通过率。请勿对外宣称通过率。
 - 供课程学员学习使用，转载请注明出处
